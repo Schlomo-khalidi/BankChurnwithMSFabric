@@ -1,0 +1,269 @@
+table customer_churn_test_predictions
+	lineageTag: d57b57cc-20ec-46eb-a2ca-a3f3c5e870fd
+	sourceLineageTag: [dbo].[customer_churn_test_predictions]
+
+	measure 'Churn Rate' = AVERAGE(customer_churn_test_predictions[predictions])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d21988b5-da13-4b83-945e-65b905a8acf4
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure Customers = COUNT(customer_churn_test_predictions[predictions])
+		formatString: 0
+		lineageTag: 784b1b22-e8aa-4eda-a47e-2e929c90629e
+
+		changedProperty = Name
+
+	measure 'Germany Churn' =
+			
+			CALCULATE(AVERAGE(customer_churn_test_predictions[predictions]),FILTER(customer_churn_test_predictions,
+			customer_churn_test_predictions[Geography_Germany] = TRUE()))
+		lineageTag: 278b5242-c783-4aa4-a05c-7ec74d9bd12e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Spain Churn' =
+			
+			CALCULATE(AVERAGE(customer_churn_test_predictions[predictions]),FILTER(customer_churn_test_predictions,
+			customer_churn_test_predictions[Geography_Spain] = TRUE()))
+		lineageTag: 9f4fd6e5-9661-40f4-bd14-6623c9c0aeb7
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'France Churn' =
+			
+			CALCULATE(AVERAGE(customer_churn_test_predictions[predictions]),FILTER(customer_churn_test_predictions,
+			customer_churn_test_predictions[Geography_France] = TRUE()))
+		lineageTag: 8d0ad4b0-2558-4d02-85bd-3542e8e5a757
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CreditScore
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b65b53c6-6051-4e8c-957b-f0350ad24e29
+		sourceLineageTag: CreditScore
+		summarizeBy: sum
+		sourceColumn: CreditScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column Geography_France
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 16ac0100-139e-46a8-860b-5d5928299644
+		sourceLineageTag: Geography_France
+		summarizeBy: none
+		sourceColumn: Geography_France
+
+		annotation SummarizationSetBy = Automatic
+
+	column Geography_Germany
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 07782008-70e9-4761-9535-e8927f6d308f
+		sourceLineageTag: Geography_Germany
+		summarizeBy: none
+		sourceColumn: Geography_Germany
+
+		annotation SummarizationSetBy = Automatic
+
+	column Geography_Spain
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: bbeb89b1-aaa4-4fda-b0aa-057552706fe3
+		sourceLineageTag: Geography_Spain
+		summarizeBy: none
+		sourceColumn: Geography_Spain
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender_Female
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 39a44c66-317f-482b-9c96-df767196d8e3
+		sourceLineageTag: Gender_Female
+		summarizeBy: none
+		sourceColumn: Gender_Female
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender_Male
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 5d7b08ff-562a-447c-9e0f-63dc2ef4b4d0
+		sourceLineageTag: Gender_Male
+		summarizeBy: none
+		sourceColumn: Gender_Male
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 4ad01085-72e1-4c2f-a443-0b290606cbfc
+		sourceLineageTag: Age
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 1f06b2c8-61da-456f-929f-c4cfaac2d88f
+		sourceLineageTag: Tenure
+		summarizeBy: sum
+		sourceColumn: Tenure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Balance
+		dataType: double
+		sourceProviderType: float
+		lineageTag: b54873db-d0db-49ef-a3c4-63c70452bacd
+		sourceLineageTag: Balance
+		summarizeBy: sum
+		sourceColumn: Balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NumOfProducts
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 124c3f92-d4fc-4cff-843e-87e15234279e
+		sourceLineageTag: NumOfProducts
+		summarizeBy: sum
+		sourceColumn: NumOfProducts
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasCrCard
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3c1c0474-48ac-4cce-a067-126e6730f299
+		sourceLineageTag: HasCrCard
+		summarizeBy: sum
+		sourceColumn: HasCrCard
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActiveMember
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a4c14e2c-ede2-4b79-bb6e-65296f908a01
+		sourceLineageTag: IsActiveMember
+		summarizeBy: sum
+		sourceColumn: IsActiveMember
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstimatedSalary
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 0fc046fa-943a-47ad-8259-4a57fffac918
+		sourceLineageTag: EstimatedSalary
+		summarizeBy: sum
+		sourceColumn: EstimatedSalary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NewTenure
+		dataType: double
+		sourceProviderType: float
+		lineageTag: bfab1d13-bc5b-42b1-93b1-c26ac4f361c2
+		sourceLineageTag: NewTenure
+		summarizeBy: sum
+		sourceColumn: NewTenure
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NewCreditsScore
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 31647893-23bb-4b75-98d2-e6c37587db66
+		sourceLineageTag: NewCreditsScore
+		summarizeBy: sum
+		sourceColumn: NewCreditsScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column NewAgeScore
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 3195059a-6b24-4a5c-bb62-f8493400b194
+		sourceLineageTag: NewAgeScore
+		summarizeBy: sum
+		sourceColumn: NewAgeScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column NewBalanceScore
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 56c2a374-359f-4885-9e7f-87505d4062d3
+		sourceLineageTag: NewBalanceScore
+		summarizeBy: sum
+		sourceColumn: NewBalanceScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column NewEstSalaryScore
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 739722e3-3554-469f-bb84-7b4d562b2725
+		sourceLineageTag: NewEstSalaryScore
+		summarizeBy: sum
+		sourceColumn: NewEstSalaryScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column predictions
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: cb19035f-f18d-4e55-8046-5d2047dc67f6
+		sourceLineageTag: predictions
+		summarizeBy: sum
+		sourceColumn: predictions
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_churn_test_predictions = entity
+		mode: directLake
+		source
+			entityName: customer_churn_test_predictions
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
